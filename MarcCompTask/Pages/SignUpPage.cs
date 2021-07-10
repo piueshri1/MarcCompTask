@@ -4,6 +4,7 @@ using MarcCompTask.Utils;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System.Threading;
+using static MarcCompTask.Utilities.Helper;
 
 namespace MarcCompTask.Pages
 {

@@ -10,17 +10,17 @@ using System.Linq;
 
 namespace MarcCompTask.Utilities
 {
-    public static class Helper
+    public class Helper
     {
         //Capture Screenshot
 
-        public static MediaEntityModelProvider CaptureScreenshotAndReturnModel(string Name)
+        public MediaEntityModelProvider CaptureScreenshotAndReturnModel(string Name)
         {
             var screenshot = ((ITakesScreenshot)CommonDriver.driver).GetScreenshot().AsBase64EncodedString;
             return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, Name).Build();
 
         }
-    }
+
 
         public static class ExcelLib
         {
@@ -116,6 +116,7 @@ namespace MarcCompTask.Utilities
 
 
         }
+    }
     
 
 }

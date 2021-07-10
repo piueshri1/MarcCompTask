@@ -54,7 +54,7 @@ namespace MarcCompTask.Pages
         private IWebElement Onsite { get; set; }
         [FindsBy(How = How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[6]/div[2]/div/div[2]/div/input")]
         private IWebElement Online { get; set; }
-        [FindsBy(How = How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[1]/div[2]/input")]
+        [FindsBy(How = How.XPath, Using = "//*[@id=service-listing-section]/div[2]/div/form/div[7]/div[2]/div/div[1]/div[2]/input")]
         private IWebElement StartDate { get; set; }
         [FindsBy(How = How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[1]/div[4]/input")]
         private IWebElement EndDate { get; set; }
@@ -113,12 +113,13 @@ namespace MarcCompTask.Pages
         private string editDescription = ExcelLib.ReadData(1, "EditDescription");
 
         //Delete
-        private string deleteMessage = ExcelLib.ReadData(1, "DeleteMessage");
+       // private string deleteMessage = ExcelLib.ReadData(1, "DeleteMessage");
 
 
         public void createShareSkill(IWebDriver driver)
 
         {
+            
             logInPage.LoginSteps(driver);
             ClickShareSkill();
             EnterTitle(title);
@@ -131,7 +132,6 @@ namespace MarcCompTask.Pages
             EnterStartDate(addDaysToStartDate);
             EnterEndDate(addDaysToStartDate, addDaysToEndDate);
             SelectSkillTrade(skillTrade, skillExchangeTag, creditServiceCharge);
-            //WorkSamples();
             SelectActive(active);
             ClickSaveButton();
         }
@@ -317,6 +317,7 @@ namespace MarcCompTask.Pages
 
         public void EditShareSkill(IWebDriver driver)
         {
+            Thread.Sleep(2000);
             EditRecord(driver);
             ValidateServiceUpdatedSuccessfully(editTitle);
 
@@ -378,7 +379,7 @@ namespace MarcCompTask.Pages
             var deleteskillPage = new ShareSkillsPage();
 
             //Delete Manage Listings            
-
+            Thread.Sleep(2000);
             deleteskillPage.Delete.Click();
 
             deleteskillPage.DeleteYes.Click();

@@ -1,4 +1,5 @@
 ﻿using AventStack.ExtentReports;
+using MarcCompTask.ExtentReport;
 using MarcCompTask.Pages;
 using MarcCompTask.Utilities;
 using MarcCompTask.Utils;
@@ -7,11 +8,18 @@ using System;
 namespace MarcCompTask.Test
 {
     [TestFixture]
-    [Parallelizable]
+    //[Parallelizable]
     class ManageRequestTest : CommonDriver
     {
+        private Helper helper;
+        ExtentReports extent = GenerateExtentReport.getInstence();
+        ExtentTest test;
+        public ManageRequestTest()
+        {
+            helper = new Helper();
+        }
 
-        [Test]
+        [Test, Order(0)]
         public void AcceptRequestTest()
         {
 
@@ -31,14 +39,16 @@ namespace MarcCompTask.Test
             catch (Exception e)
             {
 
-                var mediaEntity = Helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
+                var mediaEntity = helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
                 test.Log(Status.Fail, e.StackTrace.ToString());
                 test.Fail("Test Failed", mediaEntity);
+                extent.Flush();
             }
+            
         }
 
 
-        [Test]
+        [Test, Order(1)]
         public void DeclineRequest()
         {
 
@@ -58,14 +68,16 @@ namespace MarcCompTask.Test
             catch (Exception e)
             {
 
-                var mediaEntity = Helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
+                var mediaEntity = helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
                 test.Log(Status.Fail, e.StackTrace.ToString());
                 test.Fail("Test Failed", mediaEntity);
+                extent.Flush();
             }
+            
         }
 
 
-        [Test]
+        [Test, Order(2)]
         public void WithdrawSentRequest()
         {
 
@@ -85,14 +97,16 @@ namespace MarcCompTask.Test
             catch (Exception e)
             {
 
-                var mediaEntity = Helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
+                var mediaEntity = helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
                 test.Log(Status.Fail, e.StackTrace.ToString());
                 test.Fail("Test Failed", mediaEntity);
+                extent.Flush();
             }
+            
         }
 
 
-        [Test]
+        [Test, Order(3)]
         public void CompleteSentRequest()
         {
 
@@ -114,10 +128,12 @@ namespace MarcCompTask.Test
             catch (Exception e)
             {
 
-                var mediaEntity = Helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
+                var mediaEntity = helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
                 test.Log(Status.Fail, e.StackTrace.ToString());
                 test.Fail("Test Failed", mediaEntity);
+                extent.Flush();
             }
+            
         }
     }
 }

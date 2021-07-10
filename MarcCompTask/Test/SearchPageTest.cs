@@ -1,4 +1,5 @@
 ﻿using AventStack.ExtentReports;
+using MarcCompTask.ExtentReport;
 using MarcCompTask.Pages;
 using MarcCompTask.Utilities;
 using MarcCompTask.Utils;
@@ -10,10 +11,18 @@ using System.Text;
 namespace MarcCompTask.Test
 {
     [TestFixture]
-    [Parallelizable]
+   // [Parallelizable]
     class SearchPageTest : CommonDriver
     {
-        [Test]
+        private Helper helper;
+        ExtentReports extent = GenerateExtentReport.getInstence();
+        ExtentTest test;
+        public SearchPageTest()
+        {
+            helper = new Helper();
+        }
+
+        [Test, Order(0)]
         public void SearchSkillsByAllCategoriesTest()
         {
 
@@ -33,14 +42,16 @@ namespace MarcCompTask.Test
             catch (Exception e)
             {
 
-                var mediaEntity = Helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
+                var mediaEntity = helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
                 test.Log(Status.Fail, e.StackTrace.ToString());
                 test.Fail("Test Failed", mediaEntity);
+                extent.Flush();
             }
+         
         }
 
 
-        [Test]
+        [Test, Order(1)]
         public void SearchSkillsByFilterTest()
         {
 
@@ -60,10 +71,12 @@ namespace MarcCompTask.Test
             catch (Exception e)
             {
 
-                var mediaEntity = Helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
+                var mediaEntity = helper.CaptureScreenshotAndReturnModel(TestContext.CurrentContext.Test.Name.Trim());
                 test.Log(Status.Fail, e.StackTrace.ToString());
                 test.Fail("Test Failed", mediaEntity);
+                extent.Flush();
             }
+           
         }
     }
 }

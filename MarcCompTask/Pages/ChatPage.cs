@@ -42,6 +42,7 @@ namespace MarcCompTask.Pages
         //sending message to seller
         public void ChatWithSeller(IWebDriver driver)
         {
+            Thread.Sleep(2000);
             logInPage.LoginSteps(driver);
             searchPage.SearchSkillsByAllCategories(driver);
             searchPage.ClickSearchedSkill();
@@ -56,6 +57,7 @@ namespace MarcCompTask.Pages
 
         public void EnterChatMessage(string chatmessage)
         {
+          
             //enter message in chat text box
             ChatTextBox.SendKeys(chatmessage);
 

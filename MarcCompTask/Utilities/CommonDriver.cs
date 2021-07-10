@@ -6,6 +6,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Text;
+using static MarcCompTask.Utilities.Helper;
+
 namespace MarcCompTask.Utils
 {
     class CommonDriver
@@ -13,18 +15,18 @@ namespace MarcCompTask.Utils
          //intitialise driver
         public static IWebDriver driver { get; set; }
        // public static LogInPage LogIn;
-        public static ExtentReports extent;
-        public static ExtentHtmlReporter hTMLReporter;
-        public static ExtentTest test;
+        //public static ExtentReports extent;
+        //public static ExtentHtmlReporter hTMLReporter;
+        //public static ExtentTest test;
 
 
         [OneTimeSetUp]
         public void Initialize()
         {
-            hTMLReporter = new ExtentHtmlReporter(ConstantClass.ReportsPath);
-            hTMLReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Standard;
-            extent = new ExtentReports();
-            extent.AttachReporter(hTMLReporter);
+            //hTMLReporter = new ExtentHtmlReporter(ConstantClass.ReportsPath);
+            //hTMLReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Standard;
+            //extent = new ExtentReports();
+            //extent.AttachReporter(hTMLReporter);
 
             //Defining the browser
             driver = new ChromeDriver();
@@ -71,7 +73,7 @@ namespace MarcCompTask.Utils
             // close the driver
             driver.Close();
             driver.Quit();
-            extent.Flush();
+           // extent.Flush();
         }
 
     }

@@ -4,6 +4,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System;
+using static MarcCompTask.Utilities.Helper;
+
 namespace MarcCompTask.Pages
 {
     class LogInPage
@@ -46,9 +48,9 @@ namespace MarcCompTask.Pages
 
         public void LoginSteps(IWebDriver driver)
         {
-            Wait.ElementExist(driver, "XPath", "//a[contains(text(),'Sign')]", 5);
+           // Wait.ElementExist(driver, "XPath", "//a[contains(text(),'Sign')]", 5);
             SignIntab.Click();
-            EnterEmailandPassword(emailAddress, password);
+            EnterEmailandPassword(driver, emailAddress, password);
             RememberMe.Click();
             LoginBtn.Click();
              bool isLoggedIn = ValidateLoggedInSuccessfully(driver);
@@ -56,13 +58,11 @@ namespace MarcCompTask.Pages
         }
 
     
-        public void EnterEmailandPassword(string emailAddress, string password)
+        public void EnterEmailandPassword(IWebDriver driver,string emailAddress, string password)
         {
-
             try
             {
-                
-
+                Wait.ElementExist(driver, "Name", "email", 10);
                 //Enter email address
                 EmailAddress.SendKeys(emailAddress);
 
